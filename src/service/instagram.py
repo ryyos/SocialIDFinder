@@ -59,5 +59,8 @@ class Instagram:
     def main(self, username: str) -> Dict[str, int]:
         response = requests.get(self.api+username, headers=self.__build_header(username))
         
-        return self.build_response(response.json())
+        if response.status_code == 200:
+            return self.build_response(response.json())
+        else:
+            return response.status_code
         ...

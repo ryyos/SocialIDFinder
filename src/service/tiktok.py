@@ -25,5 +25,8 @@ class Tiktok:
     def main(self, username: str) -> Dict[str, any]:
         response: Response = requests.get(self.api+username)
 
-        return self.build_response(response.json())
+        if response.status_code == 200:
+            return self.build_response(response.json())
+        else:
+            return response.status_code
         ...

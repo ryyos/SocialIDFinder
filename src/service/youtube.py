@@ -29,7 +29,10 @@ class Youtube:
     def main(self, chanel: str) -> Dict[str, any]:
         response: Response = requests.get(self.api+self.build_chanel(chanel))
 
-        return self.build_response(response.json())
+        if response.status_code == 200:
+            return self.build_response(response.json())
+        else:
+            return response.status_code
         ...
 
     
