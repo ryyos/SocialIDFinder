@@ -13,14 +13,21 @@ class Facebook:
         self.api = os.getenv('API')+'/facebook/fb_id_finder'
         ...
 
-    def main(self, profile: str) -> Dict[str, int]:
 
+    def build_reponse(self, data: dict) -> Dict[str, any]:
+        return {
+            "id": data["data"]["fb_id"]
+        }
+        ...
+
+    def main(self, profile: str) -> Dict[str, int]:
         self.param = {
             "url": "https://www.facebook.com/"+profile
         }
 
         response: Response = requests.get(self.api, params=self.param)
-        ic(response)
-        ic(response.json())
-        ic(response.url)
+        if response.status_code == 200:
+            return self.build_response(response.json())
+        else:
+            return response.status_code
         ...

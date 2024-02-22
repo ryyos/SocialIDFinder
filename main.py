@@ -6,6 +6,6 @@ from src.service.youtube import Youtube
 from src.service.twiter import Twiter
 
 if __name__ == '__main__':
-    ig = Twiter()
-    print(ig.main('https://twitter.com/CErine_JKT48'))
+    ig = Facebook()
+    print(ig.main('macfamilyreal'))
     ...
