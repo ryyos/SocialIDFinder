@@ -5,6 +5,6 @@ from src.service.linkedin import Linkedin
 from src.service.youtube import Youtube
 
 if __name__ == '__main__':
-    ig = Youtube()
-    print(ig.main('https://www.youtube.com/@JKT48'))
+    ig = Instagram()
+    print(ig.main('ryyo.cs'))
     ...
