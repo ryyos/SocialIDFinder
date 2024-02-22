@@ -56,7 +56,7 @@ class Instagram:
         }
         ...
 
-    def build_username(username: str) -> str:
+    def build_username(self,username: str) -> str:
         return username if 'https://www.instagram.com/' not in username else \
             username.replace('https://www.instagram.com/', '').replace('/', '')
         ...
