@@ -1,0 +1,1 @@
+from .Sosmed import Sosmed
