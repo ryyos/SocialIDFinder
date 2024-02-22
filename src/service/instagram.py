@@ -56,7 +56,13 @@ class Instagram:
         }
         ...
 
+    def build_username(username: str) -> str:
+        return username if 'https://www.instagram.com/' not in username else \
+            username.replace('https://www.instagram.com/', '').replace('/', '')
+        ...
+
     def main(self, username: str) -> Dict[str, int]:
+        username: str = self.build_username(username)
         response = requests.get(self.api+username, headers=self.__build_header(username))
         
         if response.status_code == 200:

@@ -16,10 +16,33 @@ class Controller:
         ...
 
     def __search(self, sosmed: Sosmed, username: str) -> JSONResponse:
-        print(sosmed)
-        instagram = Instagram()
+        
+        match sosmed:
+            case Sosmed.INSTAGRAM:
+                medsos = Instagram()
+                ...
+
+            case Sosmed.TWITTER:
+                medsos = Twiter()
+                ...
+
+            case Sosmed.TIKTOK:
+                medsos = Tiktok()
+                ...
+
+            case Sosmed.YOUTUBE:
+                medsos = Youtube()
+                ...
+
+            case Sosmed.FACEBOOK:
+                medsos = Facebook()
+                ...
+
+            case Sosmed.LINKEDIN:
+                medsos = Linkedin()
+
         try:
-            response: dict | int = instagram.main(username)
+            response: dict | int = medsos.main(username)
 
             if isinstance(response, int):
                 return JSONResponse(content=BodyResponse(response, codes.get(str(response)), None).__dict__, status_code=response)

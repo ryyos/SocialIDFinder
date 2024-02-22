@@ -21,6 +21,8 @@ class Facebook:
         ...
 
     def main(self, profile: str) -> Dict[str, int]:
+        profile: str = profile if 'https://www.facebook.com/' not in profile else profile.replace('https://www.facebook.com/', '')
+        
         self.param = {
             "url": "https://www.facebook.com/"+profile
         }

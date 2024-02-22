@@ -23,6 +23,7 @@ class Tiktok:
         ...
 
     def main(self, username: str) -> Dict[str, any]:
+        username: str = username if 'https://www.tiktok.com/' not in username else username.replace('https://www.tiktok.com/', '')
         response: Response = requests.get(self.api+username)
 
         if response.status_code == 200:
