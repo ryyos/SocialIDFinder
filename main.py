@@ -1,6 +1,7 @@
 from src.service.instagram import Instagram
+from src.service.tiktok import Tiktok
 
 if __name__ == '__main__':
-    ig = Instagram()
-    ig.main('ryyo.cs')
+    ig = Tiktok()
+    print(ig.main('ryosoraa'))
     ...
