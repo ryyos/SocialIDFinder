@@ -30,7 +30,7 @@ class Linkedin:
         ...
 
     def main(self, name: str) -> Dict[str, any]:
-        response: Response = requests.get(self.api+name)
+        response: Response = requests.get(self.api+self.build_name(name))
         return self.build_response(response.json())
         ...
 
