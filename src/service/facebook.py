@@ -5,31 +5,33 @@ from icecream import ic
 from requests import Response
 from typing import Dict
 from dotenv import load_dotenv
+from dekimashita import Dekimashita
 
-class Facebook:
+from ..component.facebookComponent import FacebookComponent
+
+class Facebook(FacebookComponent):
     def __init__(self) -> None:
+        super().__init__()
         load_dotenv()
-
-        self.api = os.getenv('API')+'/facebook/fb_id_finder'
         ...
 
 
-    def build_response(self, data: dict) -> Dict[str, any]:
+    def build_response(self, response: Response) -> Dict[str, any]:
+
+        raw_id: str = response.text.split('userID')[1].split(',')[0]
+
         return {
-            "id": data["data"]["fb_id"]
+            "id": int(Dekimashita.vnum(raw_id))
         }
         ...
 
     def main(self, profile: str) -> Dict[str, int]:
-        profile: str = profile if 'https://www.facebook.com/' not in profile else profile.replace('https://www.facebook.com/', '')
-        
-        self.param = {
-            "url": "https://www.facebook.com/"+profile
-        }
+        profile: str = profile if self.base_url not in profile else profile.replace(self.base_url, '')
 
-        response: Response = requests.get(self.api, params=self.param)
+        response: Response = requests.get(self.base_url+profile, cookies=self.cookies, headers=self.headers)
+
         if response.status_code == 200:
-            return self.build_response(response.json())
+            return self.build_response(response)
         else:
             return response.status_code
         ...
