@@ -1,7 +1,8 @@
 from pydantic import BaseModel
-from fastapi import APIRouter
+from fastapi import APIRouter, Query
 from fastapi.responses import JSONResponse
 from http import HTTPStatus
+from icecream import ic
 
 from ..model import BodyResponse
 from ..enums import Sosmed
@@ -15,7 +16,9 @@ class Controller:
         self.router.get('/search')(self.__search)
         ...
 
-    def __search(self, sosmed: Sosmed, username: str) -> JSONResponse:
+    def __search(self, 
+                 sosmed: Sosmed = Query(None, description='Choose one'), 
+                 username: str = Query(None, description='Enter username or profile URL')) -> JSONResponse:
         
         match sosmed:
             case Sosmed.INSTAGRAM:
@@ -43,7 +46,7 @@ class Controller:
 
         try:
             response: dict | int = medsos.main(username)
-
+            ic(response)
             if isinstance(response, int):
                 return JSONResponse(content=BodyResponse(response, codes.get(str(response)), None).__dict__, status_code=response)
 

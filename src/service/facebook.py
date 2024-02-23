@@ -14,7 +14,7 @@ class Facebook:
         ...
 
 
-    def build_reponse(self, data: dict) -> Dict[str, any]:
+    def build_response(self, data: dict) -> Dict[str, any]:
         return {
             "id": data["data"]["fb_id"]
         }

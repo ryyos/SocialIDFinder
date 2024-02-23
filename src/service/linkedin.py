@@ -1,3 +1,4 @@
+import re
 import os
 import requests
 
@@ -23,13 +24,21 @@ class Linkedin:
         }
         ...
 
-    def build_name(self, name: str) -> str:
-        name: str = name if 'https://www.linkedin.com/in/' not in name else name.replace('https://www.linkedin.com/in/', '')
+    def build_name(self, username: str):
+    
+        pattern = r'/in/([\w-]+)(?:-\w+)/?$'
+    
+        match = re.search(pattern, username)
         
-        return '-'.join(name.split('-')[:-1])
+        if match:
+            return match.group(1)
+        
+        else:
+            return username
         ...
 
     def main(self, name: str) -> Dict[str, any]:
+        ic(self.build_name(name))
         response: Response = requests.get(self.api+self.build_name(name))
         if response.status_code == 200:
             return self.build_response(response.json())
