@@ -1,17 +1,15 @@
 import os
 import requests
 
-from dotenv import load_dotenv
 from typing import Dict
 from fake_useragent import FakeUserAgent
 from icecream import ic
 
-class Instagram:
-    def __init__(self) -> None:
-        load_dotenv()
+from ..component.instagramComponent import InstagramComponent
 
-        self.__COOKIES = os.getenv('COOKIES')
-        self.__IG_CLAIM = os.getenv('IG_CLAIM')
+class Instagram(InstagramComponent):
+    def __init__(self) -> None:
+        super().__init__()
 
         self.api = 'https://www.instagram.com/web/search/topsearch/?query='
         ...
@@ -22,7 +20,7 @@ class Instagram:
             'Accept': '*/*',
             'Accept-Encoding': 'gzip, deflate, br',
             'Accept-Language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7',
-            'Cookie': self.__COOKIES,
+            'Cookie': self.COOKIES,
             'Dpr': '1',
             'Referer': f'https://www.instagram.com/{username}/',
             'Sec-Ch-Prefers-Color-Scheme': 'dark',
@@ -40,7 +38,7 @@ class Instagram:
             'X-Asbd-Id': '129477',
             'X-Csrftoken': 'VqFUdHhunrwbNuPNn3UgjYlWYMPHrnwD',
             'X-Ig-App-Id': '936619743392459',
-            'X-Ig-Www-Claim': self.__IG_CLAIM,
+            'X-Ig-Www-Claim': self.IG_CLAIM,
             'X-Requested-With': 'XMLHttpRequest'
         }
 

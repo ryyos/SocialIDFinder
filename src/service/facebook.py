@@ -4,15 +4,14 @@ import requests
 from icecream import ic
 from requests import Response
 from typing import Dict
-from dotenv import load_dotenv
 from dekimashita import Dekimashita
 
 from ..component.facebookComponent import FacebookComponent
+from ..component import API
 
 class Facebook(FacebookComponent):
     def __init__(self) -> None:
         super().__init__()
-        load_dotenv()
         ...
 
 

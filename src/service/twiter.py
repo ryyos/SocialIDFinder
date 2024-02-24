@@ -5,7 +5,6 @@ import requests
 from icecream import ic
 from requests import Response
 from typing import Dict
-from dotenv import load_dotenv
 
 from src.component.twiterComponent import TwiterComponent
 

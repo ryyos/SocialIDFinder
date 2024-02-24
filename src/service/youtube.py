@@ -4,14 +4,13 @@ import requests
 from icecream import ic
 from requests import Response
 from typing import Dict
-from dotenv import load_dotenv
+from ..component import API
 
 
 class Youtube:
     def __init__(self) -> None:
-        load_dotenv()
 
-        self.api: str = os.getenv('API')+'/youtube/web/account/search?channel_name='
+        self.api: str = API+'/youtube/web/account/search?channel_name='
         ...
 
     def build_chanel(self, chanel: str) -> str:

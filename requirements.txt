@@ -2,5 +2,7 @@ fastapi==0.105.0
 pyquery==2.0.0
 pytz==2023.3.post1
 Requests==2.31.0
-selenium==4.16.0
 uvicorn==0.24.0.post1
+dekimashita==0.0.3
+icecream==2.1.3
+fake_useragent==1.4.0

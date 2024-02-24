@@ -4,13 +4,11 @@ import requests
 from icecream import ic
 from requests import Response
 from typing import Dict
-from dotenv import load_dotenv
-
+from ..component import API
 class Tiktok:
     def __init__(self) -> None:
-        load_dotenv()
 
-        self.api = os.getenv('API')+'/tiktok/api/account/search?fullname='
+        self.api = API+'/tiktok/api/account/search?fullname='
         ...
 
     def build_response(self, data: dict) -> Dict[str, any]:
